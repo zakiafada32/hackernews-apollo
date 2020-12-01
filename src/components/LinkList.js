@@ -3,6 +3,18 @@ import Link from './Link';
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag';
 
+const FEED_QUERY = gql`
+  {
+    feed {
+      links {
+        id
+        createdAt
+        url
+        description
+      }
+    }
+  }
+`;
 class LinkList extends Component {
   render() {
     return (
@@ -25,18 +37,5 @@ class LinkList extends Component {
     );
   }
 }
-
-const FEED_QUERY = gql`
-  {
-    feed {
-      links {
-        id
-        createdAt
-        url
-        description
-      }
-    }
-  }
-`;
 
 export default LinkList;
