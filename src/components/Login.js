@@ -27,6 +27,19 @@ class Login extends Component {
     name: '',
   };
 
+  _confirm = async (data) => {
+    if (!data.login || data.signup) {
+      return 'email has been used';
+    }
+    const { token } = this.state.login ? data.login : data.signup;
+    this._saveUserData(token);
+    this.props.history.push(`/`);
+  };
+
+  _saveUserData = (token) => {
+    localStorage.setItem(AUTH_TOKEN, token);
+  };
+
   render() {
     const { login, email, password, name } = this.state;
     return (
@@ -76,19 +89,6 @@ class Login extends Component {
       </div>
     );
   }
-
-  _confirm = async (data) => {
-    if (!data.login || data.signup) {
-      return 'email has been used';
-    }
-    const { token } = this.state.login ? data.login : data.signup;
-    this._saveUserData(token);
-    this.props.history.push(`/`);
-  };
-
-  _saveUserData = (token) => {
-    localStorage.setItem(AUTH_TOKEN, token);
-  };
 }
 
 export default Login;
