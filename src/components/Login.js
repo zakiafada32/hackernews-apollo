@@ -29,7 +29,6 @@ class Login extends Component {
 
   render() {
     const { login, email, password, name } = this.state;
-    console.log(login);
     return (
       <div>
         <h4 className="mv3">{login ? 'Login' : 'Sign Up'}</h4>
@@ -79,6 +78,9 @@ class Login extends Component {
   }
 
   _confirm = async (data) => {
+    if (!data.login || data.signup) {
+      return 'email has been used';
+    }
     const { token } = this.state.login ? data.login : data.signup;
     this._saveUserData(token);
     this.props.history.push(`/`);
