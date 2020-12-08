@@ -16,7 +16,8 @@ import reportWebVitals from './reportWebVitals';
 import { AUTH_TOKEN } from './constants';
 
 const httpLink = createHttpLink({
-  uri: 'http://localhost:4000',
+  // uri: 'http://localhost:4000',
+  uri: `https:${process.env.REACT_APP_API}`,
 });
 
 const authLink = setContext((_, { headers }) => {
@@ -35,7 +36,8 @@ const authLink = setContext((_, { headers }) => {
 // });
 
 const wsLink = new WebSocketLink({
-  uri: `ws://localhost:4000`,
+  // uri: `ws://localhost:4000`,
+  uri: `ws:${process.env.REACT_APP_API}`,
   options: {
     reconnect: true,
     connectionParams: {
