@@ -37,7 +37,7 @@ const authLink = setContext((_, { headers }) => {
 
 const wsLink = new WebSocketLink({
   // uri: `ws://localhost:4000`,
-  uri: `ws:${process.env.REACT_APP_API}`,
+  uri: `wss:${process.env.REACT_APP_API}`,
   options: {
     reconnect: true,
     connectionParams: {
